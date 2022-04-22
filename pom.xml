@@ -55,6 +55,10 @@
          1.将接口的ip地址改为服务名称
          2.在启动器 RestTemplate 实例上添加负载均衡注解 @LoadBalanced
          -->
+    <!-- 七、Nacos服务
+         1.引入依赖（2021版本需要引入新的负载均衡依赖）
+         2.注释掉Eureka依赖
+         3.配置nacos在yml中，注释掉eureka配置-->
     <!-- 打包类型，默认为jar -->
     <packaging>pom</packaging>
 
@@ -79,6 +83,8 @@
         <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
         <swagger.version>3.0.0</swagger.version>
         <eureka.version>3.1.1</eureka.version>
+        <nacos.version>2021.0.1.0</nacos.version>
+        <loadbalancer.version>3.1.1</loadbalancer.version>
     </properties>
 
     <dependencyManagement>
@@ -147,6 +153,18 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                 <version>${eureka.version}</version>
+            </dependency>
+            <!--  Nacos注册中心   -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <!--  2021已弃用ribbon的负载均衡，新的负载均衡依赖   -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+                <version>${loadbalancer.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

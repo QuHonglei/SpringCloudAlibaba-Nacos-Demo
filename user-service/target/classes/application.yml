@@ -2,15 +2,14 @@
 spring:
   profiles:
     active: dev  #指定激活哪个环境
-  application:
-    name: userService # 服务名称
 server:
   port: 8080
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:10086/eureka
+
 --- # 开发环境
 spring:
   datasource:
@@ -43,6 +42,11 @@ spring:
   config:
     activate:
       on-profile: dev #配置环境名称
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # nacos服务地址
+  application:
+    name: userService # 服务名称
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml #映射文件路径
   configuration:
