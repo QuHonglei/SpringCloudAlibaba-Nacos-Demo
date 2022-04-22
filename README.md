@@ -55,6 +55,9 @@ SpringCloud + MyBatis-plus + Nacos + Swagger + Mysql 分布式微服务搭建
 1. ​     将接口的ip地址改为服务名称
 2. ​     在启动器 RestTemplate 实例上添加负载均衡注解 @LoadBalanced
 
-
+### 七、Nacos服务
+1. ​     引入依赖（2021版本需要引入新的负载均衡依赖）
+2. ​     注释掉Eureka依赖
+3. ​     配置nacos在yml中，注释掉eureka配置
 
 **相关连接：**https://www.itheibai.com
