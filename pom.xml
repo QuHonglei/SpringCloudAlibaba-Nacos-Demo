@@ -58,7 +58,14 @@
     <!-- 七、Nacos服务
          1.引入依赖（2021版本需要引入新的负载均衡依赖）
          2.注释掉Eureka依赖
-         3.配置nacos在yml中，注释掉eureka配置-->
+         3.配置nacos在yml中，注释掉eureka配置
+         4.使用nacos配置中心管理配置
+         5.测试配置中心的文件是否注入进来：
+             * 配置中心文件名称为：userService-dev.yaml
+             * 内容：
+             * pattern:
+             *   dateformat: yyyy-MM-dd HH:mm:ss
+         -->
     <!-- 打包类型，默认为jar -->
     <packaging>pom</packaging>
 
@@ -85,6 +92,7 @@
         <eureka.version>3.1.1</eureka.version>
         <nacos.version>2021.0.1.0</nacos.version>
         <loadbalancer.version>3.1.1</loadbalancer.version>
+        <bootstrap.version>3.1.1</bootstrap.version>
     </properties>
 
     <dependencyManagement>
@@ -165,6 +173,11 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-loadbalancer</artifactId>
                 <version>${loadbalancer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bootstrap</artifactId>
+                <version>${bootstrap.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

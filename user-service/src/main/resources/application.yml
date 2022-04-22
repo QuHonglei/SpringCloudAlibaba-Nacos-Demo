@@ -42,13 +42,21 @@ spring:
   config:
     activate:
       on-profile: dev #配置环境名称
-  cloud:
-    nacos:
-      server-addr: localhost:8848 # nacos服务地址
-      discovery:
-        namespace: 0ce710fd-9196-49df-8353-9045c396534e # 命名空间id
-        cluster-name: Hz #集群名称，Hz代指杭州
-        group: dev # 分组名称
+#    import:
+#      - optional:nacos:userService-dev.yaml
+  #      下面的内容在配置了nacos配置管理时，避免重复要注释掉
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848 # nacos服务地址
+#        namespace: 0ce710fd-9196-49df-8353-9045c396534e # 命名空间id
+##        cluster-name: Hz #集群名称，Hz代指杭州
+#        group: dev # 分组名称
+#      config:
+#        server-addr: localhost:8848 # nacos配置中心地址
+#        namespace: 0ce710fd-9196-49df-8353-9045c396534e
+#        group: dev
+
   application:
     name: userService # 服务名称
 mybatis-plus:

@@ -1,0 +1,27 @@
+
+#   ---------bootstrap.yaml 方式，需要导入bootstrap依赖-----
+spring:
+  application:
+    name: userService
+  profiles:
+    active: dev #激活开发环境
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #nacos地址
+        namespace: 0ce710fd-9196-49df-8353-9045c396534e
+        group: dev
+      config:
+        file-extension: yaml # 配置文件后缀名
+        server-addr: localhost:8848 #nacos地址
+        namespace: 0ce710fd-9196-49df-8353-9045c396534e
+        group: dev
+#       ------------配置文件集合-------------------------------
+#        extension-configs:
+#          - data-id: userService-dev.yaml
+#            group: dev
+#            refresh: false
+#          - data-id: userService-dev.yml
+#            group: dev
+server:
+  port: 8080
