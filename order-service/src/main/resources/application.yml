@@ -44,6 +44,10 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848 # nacos服务地址
+      discovery:
+        namespace: 0ce710fd-9196-49df-8353-9045c396534e
+        group: dev
+        cluster-name: Hz
   application:
     name: orderService
 mybatis-plus:

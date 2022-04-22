@@ -45,6 +45,10 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848 # nacos服务地址
+      discovery:
+        namespace: 0ce710fd-9196-49df-8353-9045c396534e # 命名空间id
+        cluster-name: Hz #集群名称，Hz代指杭州
+        group: dev # 分组名称
   application:
     name: userService # 服务名称
 mybatis-plus:
