@@ -60,11 +60,13 @@
          2.注释掉Eureka依赖
          3.配置nacos在yml中，注释掉eureka配置
          4.使用nacos配置中心管理配置
-         5.测试配置中心的文件是否注入进来：
+         5.测试配置中心的文件是否注入进来：（此处是通过注解的方式注入）
              * 配置中心文件名称为：userService-dev.yaml
              * 内容：
              * pattern:
              *   dateformat: yyyy-MM-dd HH:mm:ss
+         6.多环境共享配置（通过配置类注入）
+             * 配置文件优先级为：userService-dev.yaml > userService.yaml（共享配置） > 本地配置
          -->
     <!-- 打包类型，默认为jar -->
     <packaging>pom</packaging>

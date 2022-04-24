@@ -1,5 +1,6 @@
 package com.itheibai.user.sys.controller;
 
+import com.itheibai.user.config.PatternProperties;
 import com.itheibai.user.sys.pojo.User;
 import com.itheibai.user.sys.service.UserService;
 import io.swagger.annotations.Api;
@@ -27,17 +28,24 @@ import java.util.Locale;
 @Api(tags = "部门控制类") //类名注释
 @Slf4j
 @RestController
-@RefreshScope // 配置nacos中心的配置文件热更新
+//@RefreshScope // 配置nacos中心的配置文件热更新
 @RequestMapping("/sys/user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @Value("${pattern.dateformat:}")  //注入的时候获取不到值，记得检查是否导入了bootstrap的依赖
-    private String dateformat;
+    // 第一种方式注入 @Value，自动刷新(热更新)配置文件需要加 @RefreshScope
+//    @Value("${pattern.dateformat:}")  //注入的时候获取不到值，记得检查是否导入了bootstrap的依赖
+//    private String dateformat;
+
+    // 第二种方式注入，属性配置类注入，自动刷新(热更新)配置文件 不需要 加 @RefreshScope
+    @Autowired
+    private PatternProperties patternProperties;
+
 
     /**
+     * 测试第二种注入方式：
      * 测试配置中心的文件是否注入进来
      * 配置中心文件名称为：userService-dev.yaml
      * 内容：
@@ -45,13 +53,30 @@ public class UserController {
      *   dateformat: yyyy-MM-dd HH:mm:ss
      * @return
      */
-    @RequestMapping("now")
-    @ApiOperation(value = "查询时间信息",response = User.class,httpMethod = "GET") //方法注释
-    public String now(){
-        System.out.println(Locale.CHINA);
-        System.out.println(dateformat);
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateformat, Locale.CHINA));
+    @RequestMapping("now2")
+    @ApiOperation(value = "查询时间信息配置类注入",response = User.class,httpMethod = "GET") //方法注释
+    public String now2(){
+        System.out.println(patternProperties.getEnvSharedValue());
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(patternProperties.getDateformat(), Locale.CHINA));
     }
+
+
+    /**
+     * 测试第一种注入方式：
+     * 测试配置中心的文件是否注入进来
+     * 配置中心文件名称为：userService-dev.yaml
+     * 内容：
+     * pattern:
+     *   dateformat: yyyy-MM-dd HH:mm:ss
+     * @return
+     */
+//    @RequestMapping("now")
+//    @ApiOperation(value = "查询时间信息",response = User.class,httpMethod = "GET") //方法注释
+//    public String now(){
+//        System.out.println(Locale.CHINA);
+//        System.out.println(dateformat);
+//        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateformat, Locale.CHINA));
+//    }
 
     /**
      * 根据用户id,查询信息
