@@ -54,10 +54,23 @@ SpringCloud + MyBatis-plus + Nacos + Swagger + Mysql 分布式微服务搭建
 
 1. ​     将接口的ip地址改为服务名称
 2. ​     在启动器 RestTemplate 实例上添加负载均衡注解 @LoadBalanced
+   * 在nacos中使用此处的注解，需要导入新的负载均衡依赖，即@LoadBalanced的依赖
 
 ### 七、Nacos服务
 1. ​     引入依赖（2021版本需要引入新的负载均衡依赖）
 2. ​     注释掉Eureka依赖
 3. ​     配置nacos在yml中，注释掉eureka配置
-
-**相关连接：**https://www.itheibai.com
+4. ​     使用nacos配置中心管理配置
+5. ​     测试配置中心的文件是否注入进来：（此处是通过注解@Value的方式注入）
+   * 新建bootstrap.yaml配置文件，此配置文件优先级略高于 application.yml
+     * 配置加载 nacos 配置中心文件，及其他自定义配置
+   * 由于 SpringCloudAlibaba 2021.0.1.0 没有 bootstrap 依赖，所以需要自己导入
+   * 配置中心文件名称为：userService-dev.yaml
+   * 内容：
+   * pattern:
+   * dateformat: yyyy-MM-dd HH:mm:ss
+7. ​多环境共享配置（通过配置类注入）
+   * 配置文件优先级为：userService-dev.yaml > userService.yaml（共享配置） > 本地配置
+   * 在nacos配置文件中心新建 userService.yaml 共享配置文件
+   * 新建属性配置类，读取配置文件属性，可能需要导入spring注解解释依赖
+### 相关连接：**https://www.itheibai.com
