@@ -1,4 +1,4 @@
-package com.itheibai.order.sys.pojo;
+package com.itheibai.feign.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

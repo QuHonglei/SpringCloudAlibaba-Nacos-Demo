@@ -12,6 +12,7 @@
         <module>user-service</module>
         <module>order-service</module>
         <module>eureka-server</module>
+        <module>feign-api</module>
     </modules>
     <!-- 一、创建父工程
          1.新建了maven项目
@@ -95,6 +96,8 @@
         <nacos.version>2021.0.1.0</nacos.version>
         <loadbalancer.version>3.1.1</loadbalancer.version>
         <bootstrap.version>3.1.1</bootstrap.version>
+        <openfeign.version>3.1.1</openfeign.version>
+        <feignHttp.version>11.8</feignHttp.version>
     </properties>
 
     <dependencyManagement>
@@ -180,6 +183,18 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-bootstrap</artifactId>
                 <version>${bootstrap.version}</version>
+            </dependency>
+            <!-- 导入feign依赖   -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+            <!-- 引入feign http依赖优化性能    -->
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-httpclient</artifactId>
+                <version>${feignHttp.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

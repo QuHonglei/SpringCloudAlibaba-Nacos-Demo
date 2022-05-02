@@ -1,19 +1,16 @@
 package com.itheibai.order.sys.controller;
 
+import com.itheibai.feign.clients.UserClient;
+import com.itheibai.feign.pojo.User;
 import com.itheibai.order.sys.pojo.Order;
 import com.itheibai.order.sys.pojo.OrderAndUserView;
-import com.itheibai.order.sys.pojo.User;
 import com.itheibai.order.sys.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Collections;
 
 /**
  * <p>
@@ -31,6 +28,8 @@ public class OrderController {
     OrderService orderService;
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    UserClient userClient;
 
     /**
      * 根据订单id,查询信息
@@ -58,8 +57,12 @@ public class OrderController {
 //        String url = "http://localhost:8080/sys/user/getUserById?id=" + orderAndUserView.getUserId();
 
         // 没有使用服务发现负载均衡之后
-        String url = "http://userService/sys/user/getUserById?id=" + orderAndUserView.getUserId();
-        User user = restTemplate.getForObject(url, User.class);
+//        String url = "http://userService/sys/user/getUserById?id=" + orderAndUserView.getUserId();
+//        User user = restTemplate.getForObject(url, User.class);
+
+        // 使用feign发起http请求，查询用户
+        User user = userClient.findById(orderAndUserView.getUserId());
+
         // 3.封装user信息
         orderAndUserView.setUser(user);
         // 4.返回

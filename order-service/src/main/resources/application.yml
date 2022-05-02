@@ -62,7 +62,23 @@ logging:
     org.springframework: info
   pattern:
     dateformat: MM-dd HH:mm:ss:SSS
+#    Feign第一种自定义配置方式
+feign:
+  client:
+    config:
+      default: # 这里用default就是全局配置，如果写服务名称，则是针对某个微服务的配置
+        logger-level: BASIC #日志级别，一般使用Basic
+  # 配置连接池
+  httpclient:
+    enabled: true # 开启feign对httpClient的支持
+    max-connections: 200 # 最大连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数
 
+#feign:
+#  client:
+#    config:
+#      userService: # 这里是局部配置，如果写服务名称，则是针对某个微服务的配置
+#        logger-level: FULL #日志级别
 
 --- # 测试环境
 spring:
