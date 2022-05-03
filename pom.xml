@@ -14,6 +14,7 @@
         <module>eureka-server</module>
         <module>feign-api</module>
         <module>gateway</module>
+        <module>oauth</module>
     </modules>
     <!-- 一、创建父工程
          1.新建了maven项目
@@ -100,6 +101,8 @@
         <openfeign.version>3.1.1</openfeign.version>
         <feignHttp.version>11.8</feignHttp.version>
         <gateway.version>3.1.1</gateway.version>
+        <oauth2.version>2.5.2.RELEASE</oauth2.version>
+        <jwt.version>1.1.0.RELEASE</jwt.version>
     </properties>
 
     <dependencyManagement>
@@ -204,14 +207,34 @@
                 <artifactId>spring-cloud-starter-gateway</artifactId>
                 <version>${gateway.version}</version>
             </dependency>
+            <!--导入oauth2授权依赖 -->
+            <!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${oauth2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <!-- 如果在maven中找不到 就去springCloud仓库找 -->
     <repositories>
+<!--        <repository>-->
+<!--            <id>spring-milestones</id>-->
+<!--            <name>Spring Milestones</name>-->
+<!--            <url>https://repo.spring.io/libs-milestone</url>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

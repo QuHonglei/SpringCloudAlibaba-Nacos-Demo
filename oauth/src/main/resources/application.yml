@@ -1,0 +1,16 @@
+server:
+  port: 8084
+spring:
+  main:
+    # 允许我们自己覆盖spring放入到IOC容器的对象
+    allow-bean-definition-overriding: true
+  application:
+    name: oauth
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # nacos服务地址
+      discovery:
+        namespace: 0ce710fd-9196-49df-8353-9045c396534e
+        group: dev
+
+

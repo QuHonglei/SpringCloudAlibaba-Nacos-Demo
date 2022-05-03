@@ -21,6 +21,10 @@ spring:
           uri: lb://orderService # 路由的目标地址
           predicates:
               - Path=/sys/order/** # 路径断言，判断路径是否以/user开头
+        - id: oauth2-service # 路由标识，必须唯一
+          uri: lb://oauth # 路由的目标地址
+          predicates:
+            - Path=/sys/oauth/** # 路径断言，判断路径是否以/user开头
       default-filters:
         - AddRequestHeader=Truth,ItHeibai is freaking awesome! #默认全局过滤器
 
