@@ -15,6 +15,7 @@
         <module>feign-api</module>
         <module>gateway</module>
         <module>oauth</module>
+        <module>nacos</module>
     </modules>
     <!-- 一、创建父工程
          1.新建了maven项目
@@ -96,6 +97,7 @@
         <swagger.version>3.0.0</swagger.version>
         <eureka.version>3.1.1</eureka.version>
         <nacos.version>2021.0.1.0</nacos.version>
+        <nacos-server.version>2.1.0</nacos-server.version>
         <loadbalancer.version>3.1.1</loadbalancer.version>
         <bootstrap.version>3.1.1</bootstrap.version>
         <openfeign.version>3.1.1</openfeign.version>
@@ -103,6 +105,7 @@
         <gateway.version>3.1.1</gateway.version>
         <oauth2.version>2.5.2.RELEASE</oauth2.version>
         <jwt.version>1.1.0.RELEASE</jwt.version>
+        <hutool.version>5.8.2</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -218,6 +221,19 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-jwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+
+            <!--      nacos 相关依赖   -->
+            <dependency>
+                <groupId>io.springboot.nacos</groupId>
+                <artifactId>nacos-config</artifactId>
+                <version>${nacos-server.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
